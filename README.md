@@ -1,9 +1,13 @@
 ## zenn
 
+https://zenn.dev/nihashi/articles/813704ab90838d
+
 ## テーブル定義参考
+
 ### search_keywords
+
 - 検索内容と検索期間を設定するテーブル
-- SELECTに関するRLS Policyを設定する必要あり
+- SELECT に関する RLS Policy を設定する必要あり
 
 ```sql
 create table
@@ -18,8 +22,9 @@ create table
 ```
 
 ### search_result
+
 - 検索結果を蓄積するテーブル
-- SELECTおよびINSERTに関するRLS Policyを設定する必要あり
+- SELECT および INSERT に関する RLS Policy を設定する必要あり
 
 ```sql
 create table
@@ -32,4 +37,3 @@ create table
     constraint search_result_search_keyword_id_fkey foreign key (search_keyword_id) references search_keyword (id)
   ) tablespace pg_default;
 ```
-
