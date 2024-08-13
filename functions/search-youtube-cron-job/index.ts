@@ -106,10 +106,8 @@ const fetchSupabaseSearchKeywords = async (): Promise<Array<SupabaseSearchKeywor
   const { data, error } = await supabase
     .from('search_keyword')
     .select('*')
-    .lte('starts_at', getPublishedAfter().toISOString())
     .lte('starts_at', getPublishedBefore().toISOString())
     .gte('ends_at', getPublishedAfter().toISOString())
-    .gte('ends_at', getPublishedBefore().toISOString())
 
   if (!data) return []
 
