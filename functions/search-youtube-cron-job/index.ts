@@ -5,9 +5,10 @@
 // Setup type definitions for built-in Supabase Runtime APIs
 import 'jsr:@supabase/functions-js/edge-runtime.d.ts'
 import { createClient } from 'npm:@supabase/supabase-js@2.39.3'
+
 const supabase = createClient(
-  Deno.env.get('EF_SUPABASE_URL') ?? '',
-  Deno.env.get('EF_SUPABASE_ANON_KEY') ?? ''
+  Deno.env.get('SUPABASE_URL') ?? '',
+  Deno.env.get('SUPABASE_ANON_KEY') ?? ''
 )
 
 type Thumbnails = {
@@ -184,8 +185,8 @@ Deno.serve(async (req) => {
 
     // 2. supabase authentication
     const { data: authUser, error: authError } = await supabase.auth.signInWithPassword({
-      email: Deno.env.get('EF_SUPABASE_EMAIL') ?? '',
-      password: Deno.env.get('EF_SUPABASE_PASSWORD') ?? '',
+      email: Deno.env.get('RLS_SUPABASE_EMAIL') ?? '',
+      password: Deno.env.get('RLS_SUPABASE_PASSWORD') ?? '',
     })
     if (authError) throw 'Supabase authentication failed.'
 
